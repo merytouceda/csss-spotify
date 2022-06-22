@@ -14,8 +14,9 @@ Home of the Spotify data analyses performed by the CSSS'22 student group.
 - Ask people in CSSS to download their top 50, and analyze differences. 
 
 ### Mery: 
-- Diversity of spotify made playlists vs. user made playlists.
-- ...
+- Diversity of spotify made playlists vs. user made playlists. Special focus on "PRIDE" playlists.
+- Differences in topics between pre-post covid breakout released songs. Perhaps sentiment analysis.
+
 
 
 ## Tools
