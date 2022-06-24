@@ -52,9 +52,10 @@ Mery: admin guru + leading.
 2. Visualization of a couple of smaller projects.
 
 
-<br/>
 
-Message we can put on discord:
+## Data collection
+**Message we can put on discord**
+<br/>
 Hi everyone, 
 
 For the Spotify project, we would like to analyse music preferences of CSSS participants. If you would like to help us include as many people as possible in our analysis and don’t mind sharing some of your listening history with us, we would be super grateful 🙂
