@@ -49,4 +49,17 @@ Mery: admin guru + leading.
 
 **What do you expect to achieve by the end of summer school?**
 1. Data collection on CSSS cohort
-2. Visualization of a couple of smaller projects. 
+2. Visualization of a couple of smaller projects.
+
+
+
+Message we can put on discord:
+Hi everyone, 
+
+For the Spotify project, we would like to analyse music preferences of CSSS participants. If you would like to help us include as many people as possible in our analysis and don’t mind sharing some of your listening history with us, we would be super grateful 🙂
+
+The data we are interested in for our analysis is on **users’ top items (artists and tracks)** and their **Discover Weekly** playlists. If you are happy to give us permission to access your Spotify data, we will only be using this data.  
+
+The way it works: Spotify has an API through which users can extract their own listening history, but Ben has created a web app, through which it is super easy for you to give us permission to access your account’s data. Here is the link for it: [example.com](http://example.com) You can of course easily revoke the access at any time by …
+
+Thank you so much in advance!
