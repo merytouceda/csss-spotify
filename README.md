@@ -52,6 +52,7 @@ Mery: admin guru + leading.
 2. Visualization of a couple of smaller projects.
 
 
+<br/>
 
 Message we can put on discord:
 Hi everyone, 
