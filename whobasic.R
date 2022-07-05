@@ -6,6 +6,13 @@ library(ggplot2)
 library(ggrepel)
 library(peRReo)
 library(dplyr)
+library(gridExtra)
+library(grid)
+library(gridtext)
+library(tidyverse)
+library(ggpubr)
+
+
 
 # palettes
 pal1=latin_palette("badbunny1",50,type="continuous")
@@ -18,14 +25,7 @@ toptracks <- read.table("/Volumes/BunnyBike/dataviz/csss-spotify/user_top_tracks
 metadata <- read.csv("/Volumes/BunnyBike/dataviz/csss-spotify/csss_spoty_metadata.csv")
 
 
-# add name to top sets
-#topartists$username <- metadata$Name
-
-
-# devide table by user
-topartists %>%
-  group_by(email)
-
+# split dataset
 split_list <- split(topartists,topartists$email)
 
 benhosken <- as.data.frame(split_list[[1]])
@@ -48,11 +48,13 @@ benhosken_basic <-
   geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
   #geom_text(aes(label=name), size=3)+
   #geom_label_repel()+
-  scale_y_reverse()+ 
+  ggtitle("Ben Hosken")+
+  scale_y_reverse()+
   xlab("How popular the artist is")+
   ylab("How high is this artist on my list")+
   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
   scale_color_gradientn(colors=rev(pal1))+
+  #stat_cor(method = "pearson", label.x = -5, label.y = 30, size = 2)+
   theme(legend.position = "none", axis.title=element_text(size=14), panel.background = element_blank(), 
         axis.line = element_line(colour = "black"))
 
@@ -69,10 +71,12 @@ johnmalloy_basic  <-
   #geom_text(aes(label=name), size=3)+
   #geom_label_repel()+
   scale_y_reverse()+ 
+  ggtitle("John Malloy")+
   xlab("How popular the artist is")+
   ylab("How high is this artist on my list")+
   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
   scale_color_gradientn(colors=rev(pal1))+
+  #stat_cor(method = "pearson", label.x = -5, label.y = 30, size = 2)+
   theme(legend.position = "none", axis.title=element_text(size=14), panel.background = element_blank(), 
         axis.line = element_line(colour = "black"))
 
@@ -87,11 +91,13 @@ simonepoetto_basic  <-
   geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
   #geom_text(aes(label=name), size=3)+
   #geom_label_repel()+
-  scale_y_reverse()+ 
+  scale_y_reverse()+
+  ggtitle("Simone Poetto")+
   xlab("How popular the artist is")+
   ylab("How high is this artist on my list")+
   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
   scale_color_gradientn(colors=rev(pal1))+
+  #stat_cor(method = "pearson", label.x = -5, label.y = 30, size = 2)+
   theme(legend.position = "none", axis.title=element_text(size=14), panel.background = element_blank(), 
         axis.line = element_line(colour = "black"))
 
@@ -106,7 +112,8 @@ keikonamuraa_basic <-
   geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
   #geom_text(aes(label=name), size=3)+
   #geom_label_repel()+
-  scale_y_reverse()+ 
+  scale_y_reverse()+
+  ggtitle("Keiko Namuraa")+
   xlab("How popular the artist is")+
   ylab("How high is this artist on my list")+
   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
@@ -125,7 +132,8 @@ lenamangold_basic <-
   geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
   #geom_text(aes(label=name), size=3)+
   #geom_label_repel()+
-  scale_y_reverse()+ 
+  scale_y_reverse()+
+  ggtitle("Lena Mangold")+
   xlab("How popular the artist is")+
   ylab("How high is this artist on my list")+
   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
@@ -144,6 +152,7 @@ loudifelice_basic <-
   #geom_text(aes(label=name), size=3)+
   #geom_label_repel()+
   scale_y_reverse()+ 
+  ggtitle("Lou di Felice")+
   xlab("How popular the artist is")+
   ylab("How high is this artist on my list")+
   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
@@ -153,5 +162,85 @@ loudifelice_basic <-
 
 # stats
 cor.test(loudifelice$top_position, loudifelice$artist_popularity)
+
+
+# - Debankur
+debankurribu_basic <- 
+  ggplot(debankurribu, aes(y = top_position, x = artist_popularity, label = name, 
+                          color = top_position, group = email))+
+  geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
+  #geom_text(aes(label=name), size=3)+
+  #geom_label_repel()+
+  scale_y_reverse()+ 
+  ggtitle("Debankur Ribu")+
+  xlab("How popular the artist is")+
+  ylab("How high is this artist on my list")+
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
+  scale_color_gradientn(colors=rev(pal1))+
+  theme(legend.position = "none", axis.title=element_text(size=14), panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+
+# stats
+cor.test(debankurribu$top_position, debankurribu$artist_popularity)
+
+
+# - Thithi
+thibautprouteau_basic <- 
+  ggplot(thibautprouteau, aes(y = top_position, x = artist_popularity, label = name, 
+                           color = top_position, group = email))+
+  geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
+  #geom_text(aes(label=name), size=3)+
+  #geom_label_repel()+
+  scale_y_reverse()+ 
+  ggtitle("Thibault Prouteau")+
+  xlab("How popular the artist is")+
+  ylab("How high is this artist on my list")+
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
+  scale_color_gradientn(colors=rev(pal1))+
+  theme(legend.position = "none", axis.title=element_text(size=14), panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+
+# stats
+cor.test(thibautprouteau$top_position, thibautprouteau$artist_popularity)
+
+
+# - Thithi
+violetacalleja_basic <- 
+  ggplot(violetacalleja, aes(y = top_position, x = artist_popularity, label = name, 
+                              color = top_position, group = email))+
+  geom_point(aes(size = artist_popularity),show.legend = FALSE)+ 
+  #geom_text(aes(label=name), size=3)+
+  #geom_label_repel()+
+  scale_y_reverse()+
+  ggtitle("Violeta Calleja")+
+  xlab("How popular the artist is")+
+  ylab("How high is this artist on my list")+
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE, colour="black", size=0.8)+
+  scale_color_gradientn(colors=rev(pal1))+
+  theme(legend.position = "none", axis.title=element_text(size=14), panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+
+# stats
+cor.test(violetacalleja$top_position, violetacalleja$artist_popularity)
+
+
+
+
+yright = richtext_grob("How high is this artist on list", rot=90, gp = gpar(fontsize = 20))
+bottom = richtext_grob(text = 'How popular the artist is', gp = gpar(fontsize = 20))
+
+p <- list(benhosken_basic, johnmalloy_basic, simonepoetto_basic,
+          keikonamuraa_basic, lenamangold_basic,loudifelice_basic,
+          debankurribu_basic,thibautprouteau_basic,violetacalleja_basic) %>% map(~.x + labs(x=NULL, y=NULL))
+
+g <- grid.arrange(grobs=p,nrow = 3, left = yright, bottom = bottom)
+ggsave("/Volumes/BunnyBike/dataviz/csss-spotify/whoisbasic.png", g)
+
+
+
+
+
+
+
 
 
